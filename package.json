@@ -1,0 +1,12 @@
+{
+  "name": "loxjs",
+  "private": true,
+  "npmClient": "yarn",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^8.1.2"
+  }
+}

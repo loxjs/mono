@@ -2,6 +2,24 @@
     "name": "@loxjs/config",
     "version": "2.1.1",
     "main": "src/index.js",
+    "description": "A configuration management library for Node.js applications",
+    "keywords": [
+        "configuration",
+        "config",
+        "settings",
+        "options",
+        "environment",
+        "variables",
+        "dotenv",
+        "json",
+        "yaml",
+        "toml",
+        "ini",
+        "xml",
+        "properties",
+        "hjson",
+        "cson"
+    ],
     "devDependencies": {
         "lodash": "4.16.0"
     },

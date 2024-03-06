@@ -15,14 +15,15 @@ function spawnPromise (command, args) {
         })
 
         child.stderr.on('data', (chunk) => {
-            data += chunk
+            data += chunk // 这里收集 stderr 的输出
         })
 
         child.on('close', (code) => {
             if (code === 0) {
                 resolve(data)
             } else {
-                reject(new Error(`Command failed with exit code ${ code }: ${ command }`))
+                // 修改这里，将 stderr 的输出包含在错误中
+                reject(new Error(`Command failed with exit code ${ code }: ${ command }\n${ data }`))
             }
         })
     })

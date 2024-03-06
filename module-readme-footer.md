@@ -10,10 +10,4 @@ Contributions to `@loxjs/<module-name>` are welcome! Please ensure that your con
 
 For more detailed information, please read the [contributing guide](<repo-url>/CONTRIBUTING.md).
 
-## License
-
-[MIT](https://opensource.org/licenses/MIT)
-
-Copyright (c) 2024-present, Zen Li
-
 Enjoy using `@loxjs/<module-name>`!

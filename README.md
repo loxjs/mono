@@ -190,3 +190,10 @@ The publish-module script automates the following tasks:
 ### Error Handling
 
 If the script encounters an error during execution, it will display an error message in the console. Review the error details, ensure all prerequisites are met, and try running the script again.
+
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
+
+Copyright (c) 2024-present, Zen Li

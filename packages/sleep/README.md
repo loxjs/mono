@@ -67,13 +67,3 @@ async function fetchData() {
 
 fetchData()
 ```
-
-## License
-
-This project is licensed under the MIT License.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request or open an issue for any changes.
-
-Enjoy using `@loxjs/sleep`!

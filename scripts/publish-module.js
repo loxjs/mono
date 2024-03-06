@@ -193,7 +193,9 @@ const PublishModule = class {
         const packageJson = require(modulePackageJsonPath)
 
         // Remove devDependencies
-        packageJson.devDependencies = {}
+        if (packageJson.devDependencies) {
+            delete packageJson.devDependencies
+        }
 
         // Set the license and author fields
         packageJson.license = projectPackageJson.license

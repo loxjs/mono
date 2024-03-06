@@ -3,6 +3,8 @@
   "private": true,
   "author": "Zen Li",
   "license": "MIT",
+  "github": "https://github.com/loxjs/mono",
+  "npmOrg": "loxjs",
   "npmClient": "yarn",
   "workspaces": [
     "packages/*"
@@ -13,6 +15,7 @@
     "publish-module": "node ./scripts/publish-module.js"
   },
   "dependencies": {
+    "@loxjs/url-join": "^1.0.0",
     "dotenv": "^16.4.5",
     "lodash": "^4.17.21",
     "semver": "^7.6.0",

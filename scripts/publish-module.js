@@ -13,6 +13,7 @@ const {
     isPlainObject,
     isString,
 } = require('lodash')
+const urlJoin = require('@loxjs/url-join')
 
 const exec = promisify(execCallback)
 
@@ -91,11 +92,15 @@ const PublishModule = class {
         this.modulePackageJsonPath = path.join(this.modulePath, 'package.json')
         this.libReadmePath = path.join(this.libPath, 'README.md')
         this.libPackageJsonPath = path.join(this.libPath, 'package.json')
+        this.moduleReadmeFooterTemplatePath = path.join(rootDir, 'module-readme-footer.md')
+        this.moduleReadmeFooterTemplateExists = false
         this.projectReadmeDocPath = null
         this.moduleReadmeDocPath = null
         this.projectHasReadmeDoc = false
         this.moduleHasReadmeDoc = false
         this.gitRemoteURL = null
+        this.gitUrl = null
+        this.repoUrl = null
     }
 
     async check () {
@@ -139,6 +144,9 @@ const PublishModule = class {
             existProcessWithError(`Git remote is not a GitHub repository:\n  ${ gitRemoteURL }`)
         }
         this.gitRemoteURL = gitRemoteURL
+        // 将git地址替换为https地址
+        this.gitUrl = gitRemoteURL.replace('git@github.com:', 'https://github.com/') // url end with .git
+        this.repoUrl = this.gitUrl.replace('.git', '')
 
         if (!fs.existsSync(projectPackageJsonPath)) {
             existProcessWithError(`package.json does not exist:\n  ${ projectPackageJsonPath }`)
@@ -159,6 +167,10 @@ const PublishModule = class {
         if (!fs.existsSync(modulePackageJsonPath)) {
             existProcessWithError(`Module ${ moduleName } does not have a package.json:\n  ${ modulePackageJsonPath }`)
         }
+
+        if (fs.existsSync(this.moduleReadmeFooterTemplatePath)) {
+            this.moduleReadmeFooterTemplateExists = true
+        }
     }
 
     // Transform code using Babel from src to lib
@@ -176,14 +188,36 @@ const PublishModule = class {
     // Copy README.md if it exists
     async processReadme () {
         const {
+            moduleName,
             moduleReadmePath,
             libReadmePath,
+            repoUrl,
         } = this
 
         if (fs.existsSync(moduleReadmePath)) {
             fs.copyFileSync(moduleReadmePath, libReadmePath)
             console.log('README.md copied to lib directory')
         }
+        // this.moduleReadmeFooterTemplateExists
+
+        const moduleReadme = fs.existsSync(moduleReadmePath)
+            ? fs.readFileSync(libReadmePath, 'utf8')
+            : null
+        const moduleReadmeFooterTemplate = this.moduleReadmeFooterTemplateExists
+            ? fs.readFileSync(this.moduleReadmeFooterTemplatePath, 'utf8')
+            : null
+        const libReadmes = []
+        if (moduleReadme) {
+            libReadmes.push(moduleReadme)
+            if (moduleReadmeFooterTemplate) {
+                libReadmes.push(moduleReadmeFooterTemplate)
+            }
+        }
+        const libReadme = libReadmes
+            .join('\n')
+            .replace(/<module-name>/g, moduleName)
+            .replace(/<repo-url>/g, repoUrl)
+        fs.writeFileSync(libReadmePath, libReadme, 'utf8')
     }
 
     async processPackageJson () {
@@ -193,7 +227,8 @@ const PublishModule = class {
             projectPackageJsonPath,
             modulePackageJsonPath,
             libPackageJsonPath,
-            gitRemoteURL,
+            gitUrl,
+            repoUrl,
             moduleHasReadmeDoc,
         } = this
 
@@ -222,10 +257,6 @@ const PublishModule = class {
             }
         }
 
-        // 将git地址替换为https地址
-        const gitUrl = gitRemoteURL
-            .replace('git@github.com:', 'https://github.com/')
-
         const repository = packageJson.repository || {}
         repository.type = 'git'
         repository.url = `git+${ gitUrl }`
@@ -235,9 +266,9 @@ const PublishModule = class {
         const moduleHomepage = moduleHasReadmeDoc
             ? `/tree/main/${ workspace }/${ moduleName }#readme`
             : `/tree/main/${ workspace }/${ moduleName }`
-        packageJson.homepage = gitUrl.replace('.git', moduleHomepage)
+        packageJson.homepage = urlJoin(repoUrl, moduleHomepage)
         packageJson.bugs = packageJson.bugs || {
-            url: gitUrl.replace('.git', '/issues'),
+            url: urlJoin(repoUrl, 'issues'),
         }
 
         // Write the updated package.json to the lib directory

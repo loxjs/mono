@@ -117,7 +117,7 @@ async function main () {
     try {
         await updateVersion(argv.moduleName, argv.moduleVersion)
     } catch (error) {
-        console.error(`Error: ${ error }`)
+        console.error(error)
         process.exit(1)
     }
 }

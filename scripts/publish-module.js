@@ -317,7 +317,7 @@ async function main () {
         })
         await publishModule.run()
     } catch (error) {
-        console.error(`Error: ${ error }`)
+        console.error(error)
         process.exit(1)
     }
 }

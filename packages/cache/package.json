@@ -2,6 +2,12 @@
     "name": "@loxjs/cache",
     "version": "2.0.1",
     "main": "src/index.js",
+    "description": "A Node.js module that provides a simple caching layer on top of Redis",
+    "keywords": [
+        "cache",
+        "redis",
+        "caching"
+    ],
     "devDependencies": {
         "ioredis": "4.11.1"
     },

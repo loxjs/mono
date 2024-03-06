@@ -1,13 +1,13 @@
 {
-  "name": "@loxjs/errors",
-  "version": "1.2.0",
-  "main": "src/index.js",
-  "devDependencies": {
-    "@loxjs/express-client-ip": "^2.0.1",
-    "lodash": "4.16.0"
-  },
-  "peerDependencies": {
-    "@loxjs/express-client-ip": ">=2.0.0",
-    "lodash": ">=4.16.0"
-  }
+    "name": "@loxjs/errors",
+    "version": "1.2.1",
+    "main": "src/index.js",
+    "devDependencies": {
+        "@loxjs/express-client-ip": "^2.0.1",
+        "lodash": "4.16.0"
+    },
+    "peerDependencies": {
+        "@loxjs/express-client-ip": ">=2.0.0",
+        "lodash": ">=4.16.0"
+    }
 }

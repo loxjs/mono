@@ -2,6 +2,12 @@
     "name": "@loxjs/count-words",
     "version": "2.0.1",
     "main": "src/index.js",
+    "description": "Count the number of words in a string",
+    "keywords": [
+        "count",
+        "words",
+        "string"
+    ],
     "devDependencies": {
         "lodash": "^4.16.0"
     },

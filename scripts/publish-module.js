@@ -18,6 +18,11 @@ if (!process.env.NPM_TOKEN) {
     process.exit(1)
 }
 
+const npmrc = `
+registry=https://registry.npmjs.org/
+//registry.npmjs.org/:_authToken=${ process.env.NPM_TOKEN }
+`
+
 
 const existProcessWithError = function (errMsg) {
     console.error(`Error: ${ errMsg }`)
@@ -231,7 +236,12 @@ const PublishModule = class {
             libPath,
         } = this
 
-        await exec(`npm publish ${ libPath } --access public`)
+        const originalDirectory = process.cwd()
+        process.chdir(libPath)
+        fs.writeFileSync('.npmrc', npmrc)
+        await exec('npm publish . --access=public')
+        fs.unlinkSync('.npmrc')
+        process.chdir(originalDirectory)
         console.log(`${ moduleName } published to npm`)
     }
 

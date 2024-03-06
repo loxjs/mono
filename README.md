@@ -1,5 +1,33 @@
 # @loxjs
 
+## Environment Setup Instructions
+
+To ensure the proper functioning of this project, it is required that you set up environment variables before running the application. Follow the steps below to configure your environment:
+
+### Creating the `.env` File
+
+1. In the root directory of the project, create a file named `.env` if it does not already exist.
+2. Open the `.env` file in a text editor of your choice.
+3. Add the following line to the `.env` file to define the NPM_TOKEN:
+
+```
+NPM_TOKEN=your-npm-token-here
+```
+
+Replace `your-npm-token-here` with the actual token provided to you.
+
+### Obtaining an NPM Token
+
+If you do not already have an NPM token, you can obtain one by logging into your NPM account and creating a new access token. Please refer to the official NPM documentation for detailed instructions: [Creating and viewing access tokens](https://docs.npmjs.com/creating-and-viewing-access-tokens).
+
+### Important Notes
+
+Do not share your `.env` file or the NPM_TOKEN with others. Treat it as sensitive information.
+The `.env` file should not be committed to version control. Ensure that it is listed in your .gitignore file to prevent accidental submission.
+
+Once you have configured your `.env` file with the appropriate NPM_TOKEN, you can proceed with running the project as per the provided instructions.
+
+
 ## Managing Dependencies with Yarn Workspaces
 
 ### Adding Dependencies to Individual Workspaces

@@ -1,29 +1,29 @@
 {
-  "name": "@loxjs/web3contract",
-  "version": "1.1.3",
-  "main": "src/index.js",
-  "dependencies": {
-    "https-proxy-agent": "^7.0.4",
-    "is-bigint": "^1.0.4",
-    "mathjs": "^12.4.0",
-    "sleep-promise": "^9.1.0"
-  },
-  "devDependencies": {
-    "@loxjs/lox": "^2.3.0",
-    "@loxjs/web3networks": "^1.1.4",
-    "debug": "^4.3.4",
-    "ethers": "^6.11.1",
-    "lodash": "^4.17.21",
-    "viem": "^2.7.20",
-    "web3": "^4.5.0"
-  },
-  "peerDependencies": {
-    "@loxjs/lox": ">=2.3.0",
-    "@loxjs/web3networks": ">=1.0.0",
-    "debug": ">=4.3.0",
-    "ethers": ">=6.8.0",
-    "lodash": ">=4.16.0",
-    "viem": ">=2.7.0",
-    "web3": ">=4.2.0"
-  }
+    "name": "@loxjs/web3contract",
+    "version": "1.1.4",
+    "main": "src/index.js",
+    "dependencies": {
+        "https-proxy-agent": "^7.0.4",
+        "is-bigint": "^1.0.4",
+        "mathjs": "^12.4.0",
+        "sleep-promise": "^9.1.0"
+    },
+    "devDependencies": {
+        "@loxjs/lox": "^2.3.0",
+        "@loxjs/web3networks": "^1.1.4",
+        "debug": "^4.3.4",
+        "ethers": "^6.11.1",
+        "lodash": "^4.17.21",
+        "viem": "^2.7.20",
+        "web3": "^4.5.0"
+    },
+    "peerDependencies": {
+        "@loxjs/lox": ">=2.3.0",
+        "@loxjs/web3networks": ">=1.0.0",
+        "debug": ">=4.3.0",
+        "ethers": ">=6.8.0",
+        "lodash": ">=4.16.0",
+        "viem": ">=2.7.0",
+        "web3": ">=4.2.0"
+    }
 }

@@ -1,0 +1,15 @@
+{
+  "name": "@loxjs/snowflake",
+  "version": "1.1.0",
+  "main": "src/index.js",
+  "dependencies": {
+    "is-bigint": "^1.0.4"
+  },
+  "devDependencies": {
+    "is-bigint": "^1.0.4",
+    "lodash": "4.16.0"
+  },
+  "peerDependencies": {
+    "lodash": ">=4.16.0"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "name": "@loxjs/node-crypto",
+  "version": "2.0.0",
+  "main": "src/index.js"
+}

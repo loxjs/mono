@@ -9,6 +9,10 @@ const { exec: execCallback } = require('child_process')
 const fs = require('fs')
 const path = require('path')
 const yargs = require('yargs')
+const {
+    isPlainObject,
+    isString,
+} = require('lodash')
 
 const exec = promisify(execCallback)
 
@@ -205,6 +209,18 @@ const PublishModule = class {
         // Set the license and author fields
         packageJson.license = projectPackageJson.license
         packageJson.author = projectPackageJson.author
+        packageJson.main = packageJson.main.replace('src/', '')
+
+        // Update the exports field
+        // TODO: This is a temporary fix for the exports field,
+        // it should be updated to support all the possible cases
+        if (isPlainObject(packageJson.exports)) {
+            for (const key of Object.keys(packageJson.exports)) {
+                if (isString(packageJson.exports[key])) {
+                    packageJson.exports[key] = packageJson.exports[key].replace('src/', '')
+                }
+            }
+        }
 
         // 将git地址替换为https地址
         const gitUrl = gitRemoteURL

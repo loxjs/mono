@@ -1,0 +1,5 @@
+{
+  "name": "@loxjs/extend-native",
+  "version": "1.0.3",
+  "main": "src/index.js"
+}

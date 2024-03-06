@@ -1,12 +1,24 @@
 
 {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module",
+        "requireConfigFile": false
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"],
+                "moduleDirectory": ["node_modules", "packages/"]
+            }
+        }
+    },
     "plugins": [
         "security"
     ],
     "extends": [
-        "airbnb-base",
-        "plugin:security/recommended"
+        "airbnb-base"
     ],
     "rules": {
         "no-debugger": 0,
@@ -40,10 +52,6 @@
         "browser": true,
         "es2021": 2021,
         "node": true
-    },
-    "parserOptions": {
-        "ecmaVersion": 12,
-        "sourceType": "module"
     },
     "globals": {}
 }

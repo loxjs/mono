@@ -218,7 +218,7 @@ const PublishModule = class {
         }
 
         // Write the updated package.json to the lib directory
-        fs.writeFileSync(libPackageJsonPath, JSON.stringify(packageJson, null, 4))
+        fs.writeFileSync(libPackageJsonPath, `${ JSON.stringify(packageJson, null, 4) }\n`)
         console.log('package.json copied to lib directory and updated')
     }
 

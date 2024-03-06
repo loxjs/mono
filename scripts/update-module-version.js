@@ -71,7 +71,7 @@ async function updateVersion (moduleName, version) {
 
     // Update the version in package.json
     packageJson.version = newVersion
-    await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 4))
+    await fs.writeFile(packageJsonPath, `${ JSON.stringify(packageJson, null, 4) }\n`)
 
     // Commit the changes
     const commitMsg = `${ moduleName } v${ newVersion }`

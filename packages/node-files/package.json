@@ -1,12 +1,12 @@
 {
-  "name": "@loxjs/node-files",
-  "version": "2.0.0",
-  "main": "src/index.js",
-  "dependencies": {},
-  "devDependencies": {
-    "shelljs": "0.8.3"
-  },
-  "peerDependencies": {
-    "shelljs": ">=0.8.1"
-  }
+    "name": "@loxjs/node-files",
+    "version": "2.0.1",
+    "main": "src/index.js",
+    "dependencies": {},
+    "devDependencies": {
+        "shelljs": "0.8.3"
+    },
+    "peerDependencies": {
+        "shelljs": ">=0.8.1"
+    }
 }

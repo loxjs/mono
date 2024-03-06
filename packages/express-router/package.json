@@ -1,6 +1,6 @@
 {
     "name": "@loxjs/express-router",
-    "version": "2.14.3",
+    "version": "2.14.4",
     "main": "src/index.js",
     "description": "Provides a fluent and convenient way to define and manage routes in Express.js applications.",
     "keywords": [

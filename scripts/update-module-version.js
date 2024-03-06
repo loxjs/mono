@@ -83,10 +83,6 @@ async function updateVersion (moduleName, version) {
     const tagName = `${ moduleName }-v${ newVersion }`
     await spawnPromise('git', ['tag', tagName])
     console.log(`Tag created: ${ tagName }`)
-
-    // Inform Lerna about the new version
-    await spawnPromise('lerna', ['version', newVersion, '--yes', '--no-git-tag-version'])
-    console.log(`Module ${ moduleName } updated to version ${ newVersion }`)
 }
 
 async function main () {

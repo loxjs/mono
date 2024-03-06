@@ -103,29 +103,29 @@ setI18n((errCode) => {
 
 ### Errors Class
 
- - new Errors(code, options)
-   - code (String): The error code.
-   - options (Object): Additional options for the error.
-     - internalCode (String): Internal error code for debugging.
-     - httpCode (Number): HTTP status code associated with the error.
-     - message (String): Human-readable description of the error.
-     - fileName (String): Name of the file where the error occurred.
-     - lineNumber (Number): Line number where the error occurred.
-     - stack (String): Stack trace.
-     - detail (Any): Additional details about the error.
-     - data (Any): Additional data payload.
+ - `new Errors(code, options)`
+   - `code` (String): The error code.
+   - `options` (Object): Additional options for the error.
+     - `internalCode` (String): Internal error code for debugging.
+     - `httpCode` (Number): HTTP status code associated with the error.
+     - `message` (String): Human-readable description of the error.
+     - `fileName` (String): Name of the file where the error occurred.
+     - `lineNumber` (Number): Line number where the error occurred.
+     - `stack` (String): Stack trace.
+     - `detail` (Any): Additional details about the error.
+     - `data` (Any): Additional data payload.
 
 ### errorWrapper Function
 
- - errorWrapper(loxErrorCodeOrNativeErrorEntity, optionsOrErrorMessage)
+ - `errorWrapper(loxErrorCodeOrNativeErrorEntity, optionsOrErrorMessage)`
    - Wraps a custom error code or native error entity into a standardized error object.
-   - loxErrorCodeOrNativeErrorEntity (String|Error): The error code or native error object.
-   - optionsOrErrorMessage (Object|String): Additional options for the error or a message string.
+   - `loxErrorCodeOrNativeErrorEntity` (String|Error): The error code or native error object.
+   - `optionsOrErrorMessage` (Object|String): Additional options for the error or a message string.
 
 ### expressError Middleware
 
- - expressError(options)
-   - options (Object): Configuration options for the middleware.
-     - isPROD (Boolean): Whether to run in production mode, which affects error detail visibility.
-     - errHandler (Function): A function to handle the error, such as logging.
-     - i18n (Function): A function for internationalizing error messages.
+ - `expressError(options)`
+   - `options` (Object): Configuration options for the middleware.
+     - `isPROD` (Boolean): Whether to run in production mode, which affects error detail visibility.
+     - `errHandler` (Function): A function to handle the error, such as logging.
+     - `i18n` (Function): A function for internationalizing error messages.

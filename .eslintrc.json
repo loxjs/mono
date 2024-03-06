@@ -1,0 +1,49 @@
+
+{
+    "parser": "babel-eslint",
+    "plugins": [
+        "security"
+    ],
+    "extends": [
+        "airbnb-base",
+        "plugin:security/recommended"
+    ],
+    "rules": {
+        "no-debugger": 0,
+        "object-shorthand": ["error", "always", { "avoidExplicitReturnArrows": true }],
+        "no-continue": 0,
+        "no-restricted-syntax": 0,
+        "import/no-named-as-default-member": 0,
+        "comma-dangle": ["error", {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "always-multiline",
+            "exports": "always-multiline"
+        }],
+        "camelcase": [0, {"properties": "always"}],
+        "spaced-comment": [0, "always"],
+        "func-names": 0,
+        "no-await-in-loop": 0,
+        "radix": 0,
+        "indent": [2, 4],
+        "no-console": 0,
+        "semi": [2, "never"],
+        "space-before-function-paren": ["error", "always"],
+        "template-curly-spacing": ["error", "always"],
+        "no-underscore-dangle": 0,
+        "no-param-reassign": 0,
+        "arrow-body-style": ["error", "always"],
+        "max-len": ["error", 180, 4, { "ignoreUrls": true, "ignoreTrailingComments": true }],
+        "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 1 }]
+    },
+    "env": {
+        "browser": true,
+        "es2021": 2021,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "globals": {}
+}

@@ -1,5 +1,13 @@
 {
     "name": "@loxjs/express-client-ip",
     "version": "2.0.2",
-    "main": "src/index.js"
+    "main": "src/index.js",
+    "description": "An npm module for obtaining a client's IP address in Express.js applications.",
+    "keywords": [
+        "express",
+        "express.js",
+        "client",
+        "ip",
+        "address"
+    ]
 }

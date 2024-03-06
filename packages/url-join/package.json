@@ -1,12 +1,12 @@
 {
     "name": "@loxjs/url-join",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "src/index.js",
     "description": "Join urls and normalize as in path.join.",
     "keywords": [
-      "url",
-      "join",
-      "path",
-      "link"
+        "url",
+        "join",
+        "path",
+        "link"
     ]
 }

@@ -12,7 +12,12 @@
     ],
     "dependencies": {
         "@loxjs/config": "^2.1.0",
-        "@loxjs/host-env": "^2.0.0"
+        "@loxjs/errors": "^1.2.0",
+        "@loxjs/extend-native": "^1.0.0",
+        "@loxjs/load-js-modules": "^1.0.0",
+        "@loxjs/host-env": "^2.0.0",
+        "@loxjs/pg": "^1.1.0",
+        "@loxjs/snowflake": "^1.1.0"
     },
     "devDependencies": {
         "lodash": "^4.16.0"

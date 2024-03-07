@@ -3,10 +3,14 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable prefer-destructuring */
 
+require('@loxjs/extend-native')()
+
 const isString = require('lodash/isString')
 const hostEnv = require('@loxjs/host-env')
 const Config = require('@loxjs/config')
-
+const error = require('@loxjs/errors')
+const loadJSModules = require('@loxjs/load-js-modules')
+const Snowflake = require('@loxjs/snowflake')
 
 const getConfigJSONOptionsOfNodeJSApp = function () {
     const config = {
@@ -73,6 +77,10 @@ const foo = function () {
     Object.defineProperty(bar, 'stores', {
         value: {},
     })
+
+    bar.error = error
+    bar.utils.loadJSModules = loadJSModules
+    bar.utils.Snowflake = Snowflake
 
     return bar
 }

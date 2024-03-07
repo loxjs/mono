@@ -1,6 +1,6 @@
 {
     "name": "@loxjs/extend-native",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "main": "src/index.js",
     "description": "This module extends native JavaScript objects with additional utility methods.",
     "keywords": [

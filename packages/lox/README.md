@@ -165,10 +165,6 @@ Dynamically loads JavaScript modules from the specified directory.
 
 An object with methods related to Snowflake ID generation.
 
-##### `lox.utils.Snowflake.generate()`
-
-Generates a unique Snowflake ID.
-
 ### `lox.cache`
 
 An object to store cached data. This object is empty by default and can be used as needed.

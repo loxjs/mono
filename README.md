@@ -32,21 +32,20 @@ Once you have configured your `.env` file with the appropriate NPM_TOKEN, you ca
 
 ### Adding Dependencies to Individual Workspaces
 
-To add a dependency to a specific workspace within the monorepo, you need to navigate to the workspace's directory or specify the workspace in the `yarn add` command.
-
-#### Navigate to the Workspace Directory
-
-```bash
-cd packages/<workspace-name>
-yarn add <dependency-name>
-```
-
-Replace `<workspace-name>` with the name of your workspace and `<dependency-name>` with the name of the dependency.
-
 #### Specify Workspace in the Command
 
 ```bash
-yarn workspace <workspace-name> add <dependency-name>
+yarn workspace <npm-module-name> add <dependency-name>
+```
+
+##### Examples
+
+```
+# Add dependency
+yarn workspace @loxjs/lox add express
+
+# Add dev dependency
+yarn workspace @loxjs/lox add lodash -D
 ```
 
 This command will add the dependency directly to the specified workspace without needing to change directories.

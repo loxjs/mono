@@ -1,5 +1,14 @@
 {
     "name": "@loxjs/web3networks",
     "version": "1.1.5",
-    "main": "src/index.js"
+    "main": "src/index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "devDependencies": {
+        "lodash": "4.16.0"
+    },
+    "peerDependencies": {
+        "lodash": ">=4.16.0"
+    }
 }

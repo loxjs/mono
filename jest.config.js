@@ -13,9 +13,15 @@ const projects = modules.map((moduleName) => {
     return {
         displayName: moduleName,
         testMatch: [`<rootDir>/packages/${ moduleName }/tests/**/*.test.js`],
-        // 在这里可以添加更多的配置项
+        // modulePathIgnorePatterns: [
+        //     `<rootDir>/packages/${ moduleName }/lib/`,
+        // ],
     }
 })
+const pathIgnorePatterns = []
+for (const moduleName of modules) {
+    pathIgnorePatterns.push(`<rootDir>/packages/${ moduleName }/lib/`)
+}
 
 module.exports = {
     // 全局配置
@@ -29,6 +35,7 @@ module.exports = {
         '/node_modules/',
         '/dist/',
         '/lib/',
+        ...pathIgnorePatterns,
     ],
     collectCoverage: true,
     coverageDirectory: '<rootDir>/coverage/',

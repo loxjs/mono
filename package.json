@@ -10,10 +10,11 @@
     "packages/*"
   ],
   "scripts": {
+    "jest:clearCache": "./node_modules/.bin/jest --clearCache && ./node_modules/.bin/jest --no-cache",
     "lint": "./node_modules/.bin/eslint packages scripts",
     "update-module-version": "node ./scripts/update-module-version.js",
     "publish-module": "node ./scripts/publish-module.js",
-    "test": "lerna run test --stream"
+    "test": "lerna run test --stream --no-parallel"
   },
   "dependencies": {
     "@loxjs/url-join": "^1.0.0",

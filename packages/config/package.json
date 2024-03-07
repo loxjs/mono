@@ -1,6 +1,6 @@
 {
     "name": "@loxjs/config",
-    "version": "2.1.4",
+    "version": "2.1.5",
     "main": "src/index.js",
     "description": "A configuration management library for Node.js applications",
     "keywords": [

@@ -2,6 +2,13 @@
     "name": "@loxjs/password",
     "version": "1.1.1",
     "main": "src/index.js",
+    "description": "A module designed for password strength checking and random password generation.",
+    "keywords": [
+        "password",
+        "strength",
+        "generation",
+        "random"
+    ],
     "devDependencies": {
         "lodash": "4.16.0"
     },

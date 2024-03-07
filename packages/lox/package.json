@@ -1,6 +1,6 @@
 {
     "name": "@loxjs/lox",
-    "version": "2.3.3",
+    "version": "2.4.0",
     "main": "src/index.js",
     "description": "A Node.js module that provides a configuration and utility framework for Node.js applications.",
     "keywords": [

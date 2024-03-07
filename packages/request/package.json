@@ -2,6 +2,12 @@
     "name": "@loxjs/request",
     "version": "2.0.4",
     "main": "src/index.js",
+    "description": "A module that provides a wrapper around the axios library.",
+    "keywords": [
+        "axios",
+        "request",
+        "http"
+    ],
     "devDependencies": {
         "axios": "^1.6.7",
         "lodash": "4.16.0"

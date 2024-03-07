@@ -82,21 +82,33 @@ lox.log('This is a test log message.');
 
 ```javascript
 // Dynamically load JavaScript modules from a specified directory
-const modules = lox.utils.loadJSModules('/path/to/modules');
+const modules = lox.utils.loadJSModules({ dir: './path/to/modules', autoLoad: true });
 
-// Example usage of loaded modules
-if (modules.myModule) {
-  modules.myModule.doSomething();
-}
+// Use the loaded modules
+modules.forEach((mod) => {
+  console.log(`Module ${mod.moduleName} loaded`, mod.module);
+});
 ```
+
+Click [here](https://www.npmjs.com/package/@loxjs/load-js-modules) to get more info about `loadJSModules`.
 
 #### Generating Snowflake IDs
 
 ```javascript
+// Create a Snowflake ID generator with custom settings
+const snowflake = new lox.utils.Snowflake({
+  epoch: 1546272000000, // Custom epoch start time (default is 2019/1/1)
+  dataCenterId: 1, // Data center identifier
+  workerId: 1, // Worker identifier
+  sequence: 0 // Initial sequence number
+});
+
 // Generate a Snowflake ID
-const id = lox.utils.Snowflake.generate();
+const id = snowflake.nextId();
 console.log(`Generated Snowflake ID: ${id}`);
 ```
+
+Click [here](https://www.npmjs.com/package/@loxjs/snowflake) to get more info about `Snowflake`.
 
 ## API Reference
 

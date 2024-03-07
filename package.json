@@ -12,13 +12,17 @@
   "scripts": {
     "lint": "./node_modules/.bin/eslint packages scripts",
     "update-module-version": "node ./scripts/update-module-version.js",
-    "publish-module": "node ./scripts/publish-module.js"
+    "publish-module": "node ./scripts/publish-module.js",
+    "test": "lerna run test --stream"
   },
   "dependencies": {
     "@loxjs/url-join": "^1.0.0",
+    "@types/jest": "^29.5.12",
     "dotenv": "^16.4.5",
+    "jest": "^29.7.0",
     "lodash": "^4.17.21",
     "semver": "^7.6.0",
+    "ts-jest": "^29.1.2",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

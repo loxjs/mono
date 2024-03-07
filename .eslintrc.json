@@ -51,7 +51,8 @@
     "env": {
         "browser": true,
         "es2021": 2021,
-        "node": true
+        "node": true,
+        "jest": true
     },
     "globals": {}
 }

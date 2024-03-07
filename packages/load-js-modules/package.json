@@ -1,6 +1,6 @@
 {
     "name": "@loxjs/load-js-modules",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "main": "src/index.js",
     "description": "Provides a convenient way to dynamically load JavaScript modules from a specified directory.",
     "keywords": [

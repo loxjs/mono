@@ -1,6 +1,6 @@
 {
     "name": "@loxjs/request",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "main": "src/index.js",
     "description": "A module that provides a wrapper around the axios library.",
     "keywords": [

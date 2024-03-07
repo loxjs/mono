@@ -11,6 +11,12 @@ const Config = require('@loxjs/config')
 const error = require('@loxjs/errors')
 const loadJSModules = require('@loxjs/load-js-modules')
 const Snowflake = require('@loxjs/snowflake')
+const debug = require('debug')
+const express = require('express')
+const helmet = require('helmet')
+const cors = require('cors')
+const ExpressRouter = require('@loxjs/express-router')
+
 
 const getConfigJSONOptionsOfNodeJSApp = function () {
     const config = {
@@ -77,6 +83,12 @@ const foo = function () {
     Object.defineProperty(bar, 'stores', {
         value: {},
     })
+
+    decorate('debug', debug)
+    decorate('express', express)
+    decorate('helmet', helmet)
+    decorate('cors', cors)
+    decorate('ExpressRouter', ExpressRouter)
 
     bar.error = error
     bar.utils.loadJSModules = loadJSModules

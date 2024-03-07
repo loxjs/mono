@@ -1,5 +1,14 @@
 {
     "name": "@loxjs/node-local-ip",
     "version": "2.0.1",
-    "main": "src/index.js"
+    "main": "src/index.js",
+    "description": "A simple Node.js module that helps you retrieve the local IPv4 address of your machine.",
+    "keywords": [
+        "node",
+        "local",
+        "ip",
+        "address",
+        "ipv4",
+        "network"
+    ]
 }

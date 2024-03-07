@@ -1,8 +1,10 @@
 # @loxjs/extend-native
 
-The `@loxjs/extend-native` module extends native JavaScript objects with additional utility methods. This module is designed to enhance the functionality of native objects such as `Array`, `Date`, `Number`, `String`, and `Object` by adding convenient accessors and methods.
+`@loxjs/extend-native` is a JavaScript module designed to extend the prototypes of native JavaScript objects such as `Array`, `Date`, `Number`, `String`, and `Object`. By extending these prototypes, `@loxjs/extend-native` adds additional methods and properties that can be used in a more convenient and expressive way.
 
 ## Installation
+
+To install the `@loxjs/extend-native` module, run the following command using npm:
 
 ```sh
 npm install @loxjs/extend-native
@@ -16,161 +18,136 @@ yarn add @loxjs/extend-native
 
 ## Usage
 
-After installation, import the module function and call it to extend the prototypes:
+Before you can use the extended methods and properties, you must first require and execute the module to mount the extensions onto the native prototypes:
 
-```
-const extendNative = require('@loxjs/extend-native');
-extendNative();
-```
-
-## Extensions
-
-### BigInt
-
-Adds a `toJSON` method to `BigInt` for proper serialization.
-
-**Example:**
-
-```
-const bigIntValue = BigInt(123456789012345678901234567890);
-console.log(JSON.stringify({ key: bigIntValue })); // '{"key":"123456789012345678901234567890"}'
+```js
+const mountExtendNative = require('@loxjs/extend-native');
+mountExtendNative();
 ```
 
-### Array
+Once mounted, the new methods and properties will be available on all instances of the extended objects.
 
-#### first
+## API Reference
 
-Access the first element or find the first element that matches a filter function.
+Below is a list of the extended prototypes and their additional methods and properties:
 
-**Example:**
+### Array Extensions
 
-```
-const array = [1, 2, 3, 4];
-console.log(array.first); // 1
-console.log(array.first(x => x > 2)); // 3
-```
+#### Properties
 
-#### last
+- `first`: Get the first element of the array.
+- `last`: Get the last element of the array.
+- `maxIndex`: Get the index of the last element in the array.
 
-Access the last element or find the last element that matches a filter function.
+#### Methods
 
-**Example:**
+- `$first(filter)`: Find the first element that matches the provided filter function.
+- `$last(filter)`: Find the last element that matches the provided filter function.
+- `$before(filter)`: Find the element before the first element that matches the provided filter function.
+- `$after(filter)`: Find the element after the first element that matches the provided filter function.
 
-```
-console.log(array.last); // 4
-console.log(array.last(x => x < 4)); // 3
-```
+### Date Extensions
 
-#### before
+#### Properties
 
-Find the element before the one that matches a filter function.
+- `timestamp`: Get the numeric timestamp equivalent of the date.
+- `unixTimestamp`: Get the Unix timestamp (seconds since the Unix epoch).
 
-**Example:**
+#### Methods
 
-```
-console.log(array.before(x => x === 3)); // 2
-```
+- `$gt(date)`: Check if the date is greater than another date.
+- `$gte(date)`: Check if the date is greater than or equal to another date.
+- `$lt(date)`: Check if the date is less than another date.
+- `$lte(date)`: Check if the date is less than or equal to another date.
+- `$eq(date)`: Check if the date is equal to another date.
 
-#### after
+### Number Extensions
 
-Find the element after the one that matches a filter function.
+#### Methods
 
-**Example:**
+- `$gt(num)`: Check if the number is greater than another number.
+- `$gte(num)`: Check if the number is greater than or equal to another number.
+- `$lt(num)`: Check if the number is less than another number.
+- `$lte(num)`: Check if the number is less than or equal to another number.
+- `$eq(num)`: Check if the number is equal to another number.
 
-```
-console.log(array.after(x => x === 2)); // 3
-```
+### String Extensions
 
-#### maxIndex
+#### Methods
 
-Get the index of the last element in the array.
+- `$contains(str)`: Check if the string contains another string.
+- `$rightSubstr(len)`: Get the substring from the right side of the string with the specified length.
 
-**Example:**
+### Object Extensions
 
-```
-console.log(array.maxIndex); // 3
-```
+#### Methods
 
-### Date
+- `$has(key)`: Check if the object has a property with the specified key.
 
-#### timestamp
+## Examples
 
-Get the timestamp of the date.
+### Array Examples
 
-**Example:**
+```js
+const array = [1, 2, 3, 4, 5];
 
-```
-const date = new Date();
-console.log(date.timestamp); // 1587754887956
-```
+console.log(array.first); // Output: 1
+console.log(array.last); // Output: 5
+console.log(array.maxIndex); // Output: 4
 
-#### unixTimestamp
-
-Get the Unix timestamp of the date.
-
-**Example:**
-
-```
-console.log(date.unixTimestamp); // 1587754887
+console.log(array.$first(x => x > 1)); // Output: 2
+console.log(array.$last(x => x < 5)); // Output: 4
+console.log(array.$before(x => x === 3)); // Output: 2
+console.log(array.$after(x => x === 3)); // Output: 4
 ```
 
-#### Comparison Accessors (`$gt`, `$gte`, `$lt`, `$lte`, `$eq`)
+### Date Examples
 
-Compare two dates.
+```js
+const date1 = new Date('2024-01-01');
+const date2 = new Date('2024-01-02');
 
-**Example:**
+console.log(date1.timestamp); // Output: 1672531200000
+console.log(date1.unixTimestamp); // Output: 1672531200
 
-```
-const date1 = new Date('2020-04-25');
-const date2 = new Date('2020-04-26');
-console.log(date1.$lt(date2)); // true
-```
-
-### Number
-
-Comparison Accessors (`$gt`, `$gte`, `$lt`, `$lte`, `$eq`)
-
-Compare two numbers.
-
-**Example:**
-
-```
-const number = 10;
-console.log(number.$gt(5)); // true
+console.log(date1.$gt(date2)); // Output: false
+console.log(date1.$gte(date2)); // Output: false
+console.log(date1.$lt(date2)); // Output: true
+console.log(date1.$lte(date2)); // Output: true
+console.log(date1.$eq(date2)); // Output: false
 ```
 
-### String
+### Number Examples
 
-#### $contains
+```js
+const number = 42;
 
-Check if the string contains a given substring.
-
-**Example:**
-
-```
-const string = 'hello world';
-console.log(string.$contains('world')); // true
-```
-
-#### rightSubstr
-
-Get the substring from the right side of the string with a given length.
-
-**Example:**
-
-```
-console.log(string.rightSubstr(5)); // 'world'
+console.log(number.$gt(100)); // Output: false
+console.log(number.$gte(42)); // Output: true
+console.log(number.$lt(100)); // Output: true
+console.log(number.$lte(42)); // Output: true
+console.log(number.$eq(42)); // Output: true
 ```
 
-### Object
+### String Examples
 
-#### $has
+```js
+const string = "Hello, World!";
 
-Check if the object has a property with a given key.
-
-**Example:**
-
+console.log(string.$contains("World")); // Output: true
+console.log(string.$rightSubstr(6)); // Output: "World!"
 ```
-const object = { key: 'value' };
-console.log(object.$has('key')); // true
+
+### Object Examples
+
+```js
+const object = { a: 1, b: 2 };
+
+console.log(object.$has("a")); // Output: true
+console.log(object.$has("c")); // Output: false
 ```
+
+## Notes
+
+- Extending native prototypes can be potentially problematic, especially if the code is being used in combination with other libraries or in larger codebases where similar extensions might be made. It can lead to conflicts and unexpected behavior.
+- It is generally recommended to avoid extending native prototypes and instead use utility functions or ES6 classes that extend native objects in a non-intrusive way.

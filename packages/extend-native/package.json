@@ -11,6 +11,9 @@
         "utility",
         "methods"
     ],
+    "scripts": {
+        "test": "jest"
+    },
     "devDependencies": {
         "lodash": "4.16.0"
     },

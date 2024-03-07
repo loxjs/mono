@@ -259,7 +259,7 @@ const PublishModule = class {
 
         const repository = packageJson.repository || {}
         repository.type = 'git'
-        repository.url = `git+${ gitUrl }`
+        repository.url = gitUrl
         repository.directory = `${ workspace }/${ moduleName }`
         packageJson.repository = repository
 

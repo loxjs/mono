@@ -2,6 +2,14 @@
     "name": "@loxjs/load-js-modules",
     "version": "1.0.1",
     "main": "src/index.js",
+    "description": "Provides a convenient way to dynamically load JavaScript modules from a specified directory.",
+    "keywords": [
+        "load",
+        "js",
+        "modules",
+        "dynamic",
+        "directory"
+    ],
     "dependencies": {
         "@loxjs/fs": "^1.0.0"
     }

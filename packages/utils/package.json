@@ -1,0 +1,21 @@
+{
+    "name": "@loxjs/utils",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "description": "A collection of utility functions",
+    "keywords": [
+        "utils",
+        "utilities",
+        "email",
+        "hash",
+        "wallet",
+        "obfuscate",
+        "shorten",
+        "Google",
+        "auth",
+        "oauth2"
+    ],
+    "dependencies": {
+        "@loxjs/google-auth": "^1.0.0"
+    }
+}

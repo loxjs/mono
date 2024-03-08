@@ -1,87 +1,132 @@
-# @loxjs/lox
+# @loxjs/lox Module
 
-`@loxjs/lox` is a Node.js utility module that provides a streamlined environment for setting up and configuring Node.js applications, particularly those built with [Express.js](https://www.npmjs.com/package/express). It extends native JavaScript objects, integrates a configuration loader, and offers a suite of utilities for error handling, module loading, and unique ID generation.
+The `@loxjs/lox` module is a comprehensive utility library for Node.js applications. It extends native JavaScript capabilities, integrates environment configurations, error handling, dynamic module loading, and provides a suite of tools for building robust Node.js services.
 
 ## Features
 
-- **Native Extensions**: Automatically extends native JavaScript types with additional functionality.
-- **Configuration Management**: Loads application settings from `package.json` and environment variables, and merges them into a single configuration object.
-- **Middleware Integration**: Bundles common [Express.js](https://www.npmjs.com/package/express) middleware for security, CORS, and more.
-- **Debugging Support**: Includes a debugging utility for logging and development purposes.
-- **Utility Functions**: Provides a collection of utility functions for loading JavaScript modules dynamically and generating Snowflake IDs.
-- **Decorator Function**: Offers a `decorate` function to attach new properties or methods to the main module object.
-- **Routing**: Integrates [@loxjs/express-router](https://www.npmjs.com/package/@loxjs/express-router) for advanced routing capabilities.
+- Extends native JavaScript objects with additional functionality.
+- Loads configuration options based on the Node.js application environment.
+- Offers a structured error handling system.
+- Dynamically loads JavaScript modules.
+- Generates unique IDs with Snowflake algorithm.
+- Provides debugging utilities.
+- Sets up an Express.js application with security best practices using Helmet and CORS.
+- Includes a utility function collection from `@loxjs/utils`.
+- Facilitates the creation of Express.js routing with `@loxjs/express-router`.
 
 ## Installation
 
-Install the module with npm:
+To install the `@loxjs/lox` module, use the following npm command:
 
 ```sh
 npm install @loxjs/lox
 ```
 
-Or with Yarn:
-
-```sh
-yarn add @loxjs/lox
-```
-
 ## Usage
 
-Below are examples of how to use the `@loxjs/lox` module in your application.
+After installation, you can require the `@loxjs/lox` module in your project to access its functionalities.
 
-### Basic Setup
+### Configuration
 
-```javascript
+The module automatically loads configuration options from the environment and the `package.json` of the Node.js application.
+
+#### Example
+
+```js
 const lox = require('@loxjs/lox');
 
-// Access the loaded configuration
-const config = lox.config;
+console.log(lox.config); // Access configuration options
+```
 
-// Start an Express application
+### Debugging
+
+The `debug` utility is provided for logging debug information.
+
+#### Example
+
+```js
+const lox = require('@loxjs/lox');
+
+const debug = lox.debug('myapp:server');
+debug('Server is starting...');
+```
+
+For more information on the `debug` package, visit the [npmjs page](https://www.npmjs.com/package/debug).
+
+### Express.js Application Setup
+
+The module sets up an Express.js application with security enhancements using Helmet and CORS.
+
+#### Example
+
+```js
+const lox = require('@loxjs/lox');
+
 const app = lox.express();
-app.use(lox.helmet()); // Security middleware
-app.use(lox.cors()); // CORS middleware
-
-// Define routes using ExpressRouter
-const router = new lox.ExpressRouter();
-router
-  .get('/example')
-  .controller(async (req) => {
-    // Your GET controller logic here
-  });
-app.use('/api', router.end());
-
-// Start the server
-const port = config.port || 3000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+app.use(lox.helmet()); // Security enhancements
+app.use(lox.cors()); // Enable CORS
 ```
 
-### Using `decorate`
+For more information on `express`, `helmet`, and `cors`, visit their npmjs pages:
+- [express](https://www.npmjs.com/package/express)
+- [helmet](https://www.npmjs.com/package/helmet)
+- [cors](https://www.npmjs.com/package/cors)
 
-The `decorate` function allows you to attach new properties or methods to the `lox` object.
+### Error Handling
 
-```javascript
-// Example function to be decorated
-function myCustomLogger(message) {
-  console.log('Custom Log:', message);
+The module provides a structured error handling system.
+
+#### Example
+
+```js
+const lox = require('@loxjs/lox');
+
+try {
+  // Your code here...
+} catch (error) {
+  lox.error.handle(error);
 }
-
-// Decorate the lox object with the custom logger
-lox.decorate('log', myCustomLogger);
-
-// Use the decorated function
-lox.log('This is a test log message.');
 ```
 
-### Utility Functions
+### Utilities
 
-#### Loading JavaScript Modules
+Utility functions from `@loxjs/utils` are included for convenience.
 
-```javascript
-// Dynamically load JavaScript modules from a specified directory
+#### Example
+
+```js
+const lox = require('@loxjs/lox');
+
+const obfuscatedEmail = lox.utils.obfuscateEmail('example@domain.com');
+console.log(obfuscatedEmail); // Output: e***e@domain.com
+```
+
+For more information on the `@loxjs/utils` package, visit the [npmjs page](https://www.npmjs.com/package/@loxjs/utils).
+
+### Snowflake IDs
+
+Generate unique IDs with the Snowflake algorithm.
+
+#### Example
+
+```js
+const lox = require('@loxjs/lox');
+
+const id = new lox.utils.Snowflake(/* parameters */).next();
+console.log(id); // Output: A unique Snowflake ID
+```
+
+For more information on the `@loxjs/snowflake` package, visit the [npmjs page](https://www.npmjs.com/package/@loxjs/snowflake).
+
+### Dynamic Module Loading
+
+Dynamically load JavaScript modules as needed.
+
+#### Example
+
+```js
+const lox = require('@loxjs/lox');
+
 const modules = lox.utils.loadJSModules({ dir: './path/to/modules', autoLoad: true });
 
 // Use the loaded modules
@@ -90,85 +135,12 @@ modules.forEach((mod) => {
 });
 ```
 
-Click [here](https://www.npmjs.com/package/@loxjs/load-js-modules) to get more info about `loadJSModules`.
+## Error Handling
 
-#### Generating Snowflake IDs
+Errors are handled through the `@loxjs/errors` module. If an error occurs, it should be passed to the `error.handle` function for structured error handling.
 
-```javascript
-// Create a Snowflake ID generator with custom settings
-const snowflake = new lox.utils.Snowflake({
-  epoch: 1546272000000, // Custom epoch start time (default is 2019/1/1)
-  dataCenterId: 1, // Data center identifier
-  workerId: 1, // Worker identifier
-  sequence: 0 // Initial sequence number
-});
+For more information on the `@loxjs/errors` package, visit the [npmjs page](https://www.npmjs.com/package/@loxjs/errors).
 
-// Generate a Snowflake ID
-const id = snowflake.nextId();
-console.log(`Generated Snowflake ID: ${id}`);
-```
+---
 
-Click [here](https://www.npmjs.com/package/@loxjs/snowflake) to get more info about `Snowflake`.
-
-## API Reference
-
-### `lox.config`
-
-An object containing the merged configuration from your `package.json` and environment variables.
-
-### `lox.decorate(key, fn)`
-
-Attaches a new property or method to the `lox` object.
-
-- `key` (String): The key under which the function should be stored.
-- `fn` (Function): The function to be attached.
-
-### `lox.debug(namespace)`
-
-Creates a [debug](https://www.npmjs.com/package/debug) instance with the specified namespace.
-
-- `namespace` (String): The namespace for the debug instance.
-
-### `lox.express()`
-
-Creates and returns an [Express](https://www.npmjs.com/package/express) application instance.
-
-### `lox.helmet()`
-
-Returns the [Helmet](https://www.npmjs.com/package/helmet) middleware for securing Express applications by setting various HTTP headers.
-
-### `lox.cors(options)`
-
-Returns the [CORS](https://www.npmjs.com/package/cors) middleware configured with the provided options.
-
-- `options` (Object): Configuration options for CORS middleware.
-
-### `lox.ExpressRouter`
-
-A constructor for creating a new [ExpressRouter](https://www.npmjs.com/package/@loxjs/express-router) instance for defining application routes.
-
-### `lox.error`
-
-An object containing error-handling utilities.
-
-### `lox.utils`
-
-An object containing utility functions such as [loadJSModules](https://www.npmjs.com/package/@loxjs/express-router) and [Snowflake](https://www.npmjs.com/package/@loxjs/snowflake).
-
-#### `lox.utils.loadJSModules(directory)`
-
-Dynamically loads JavaScript modules from the specified directory.
-
-- `directory` (String): The path to the directory containing JavaScript modules.
-
-#### `lox.utils.Snowflake`
-
-An object with methods related to Snowflake ID generation.
-
-### `lox.cache`
-
-An object to store cached data. This object is empty by default and can be used as needed.
-
-### `lox.stores`
-
-An object to store data stores. This object is empty by default and can be used to store instances of data stores or models.
+This README provides a basic overview of the `@loxjs/lox` module. For further details and advanced usage, please refer to the source code and the official documentation for each individual package included in this module.

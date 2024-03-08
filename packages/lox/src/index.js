@@ -15,6 +15,7 @@ const debug = require('debug')
 const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
+const utils = require('@loxjs/utils')
 const ExpressRouter = require('@loxjs/express-router')
 
 
@@ -91,6 +92,9 @@ const foo = function () {
     decorate('ExpressRouter', ExpressRouter)
 
     bar.error = error
+    for (const key of Object.keys(utils)) {
+        bar.utils[key] = utils[key]
+    }
     bar.utils.loadJSModules = loadJSModules
     bar.utils.Snowflake = Snowflake
 

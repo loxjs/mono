@@ -68,6 +68,63 @@ const Foo = class {
                     }
                     return next(routerNext)
                 }
+
+                /*
+                 * 处理设置 cookie 的需求
+                 * req.setCookie = {
+                 *    name: 'name', // required
+                 *    value: 'value', // required
+                 *   options: { maxAge: 1000 * 60 * 60 * 24 * 30 } // optional
+                 * }
+                 * req.setCookie.name String cookie 名称, 必填
+                 * req.setCookie.value String cookie 值, 必填
+                 * req.setCookie.options Object cookie 选项, 可选
+                */
+                if (isPlainObject(req.setCookie)) {
+                    if (req.setCookie.name && req.setCookie.value) {
+                        res.cookie(req.setCookie.name, req.setCookie.value, req.setCookie.options)
+                    }
+                }
+                /**
+                 * 处理设置多个 cookie 的需求
+                 * req.setCookies = [
+                 *   {
+                 *     name: 'name1', // required
+                 *     value: 'value1', // required
+                 *     options: { maxAge: 1000 * 60 * 60 * 24 * 30 } // optional
+                 *   },
+                 *   ...
+                 * ]
+                 * req.setCookies Array cookie 数组, 可选
+                 * req.setCookies[n].name String cookie 名称, 必填
+                 * req.setCookies[n].value String cookie 值, 必填
+                 * req.setCookies[n].options Object cookie 选项, 可选
+                 */
+                if (isArray(req.setCookies)) {
+                    for (const cookie of req.setCookies) {
+                        if (cookie.name && cookie.value) {
+                            res.cookie(cookie.name, cookie.value, cookie.options)
+                        }
+                    }
+                }
+                /**
+                 * 处理删除 cookie 的需求
+                 * req.clearCookie String cookie 名称, 可选
+                 */
+                if (isString(req.clearCookie)) {
+                    res.clearCookie(req.clearCookie)
+                }
+                /**
+                 * 处理删除多个 cookie 的需求
+                 * req.clearCookies Array cookie 数组, 可选
+                 * req.clearCookies[n] String cookie 名称, 可选
+                 */
+                if (isArray(req.clearCookies)) {
+                    for (const cookieName of req.clearCookies) {
+                        res.clearCookie(cookieName)
+                    }
+                }
+
                 // 处理 res.location 的需求
                 if (isString(req.routerLocation) && req.routerLocation.length > 0) {
                     res.location(req.routerLocation)

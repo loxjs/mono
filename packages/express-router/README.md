@@ -31,7 +31,7 @@ yarn add @loxjs/express-router
 
 Import and use `@loxjs/express-router` to define routes in your Express.js application:
 
-```
+```javascript
 // router.js
 
 const ExpressRouter = require('@loxjs/express-router');
@@ -58,7 +58,7 @@ module.exports = router
 
 Once all routes are defined, call `end()` to finalize and use them in your Express.js application:
 
-```
+```javascript
 const express = require('express');
 const router = require('./router.js');
 
@@ -126,7 +126,7 @@ These extended features allow for more granular control over the HTTP response f
 
 By default, responses are sent as JSON with the following format:
 
-```
+```javascript
 {
   "code": 200,
   "data": "your data here" // If `.controller()` returns data
@@ -135,17 +135,114 @@ By default, responses are sent as JSON with the following format:
 
 If `.controller()` returns void or undefined, responses are sent as JSON with the following format:
 
-```
+```javascript
 {
   "code": 200
 }
+```
+
+### Setting a Single Cookie
+
+To set a cookie, you can use the `req.setCookie` object within your request handler. The `req.setCookie` object must contain the `name` and `value` properties.
+
+- `req.setCookie.name` (String): The name of the cookie. This field is required.
+- `req.setCookie.value` (String): The value of the cookie. This field is required.
+- `req.setCookie.options` (Object): Optional settings for the cookie, such as `maxAge`.
+
+#### Example
+
+```javascript
+router
+  .post('/set-cookie')
+  .controller((req) => {
+    req.setCookie = {
+      name: 'sessionId',
+      value: 'abc123',
+      options: { maxAge: 1000 * 60 * 60 * 24 * 30 } // Expires in 30 days
+    };
+
+    // ...additional logic...
+
+    res.end('Cookie set');
+  });
+```
+
+### Setting Multiple Cookies
+
+To set multiple cookies at once, you can assign an array of cookie objects to `req.setCookies`.
+
+- `req.setCookies` (Array): An array where each element is an object with `name`, `value`, and optional `options` properties.
+
+#### Example
+
+```javascript
+router
+  .post('/set-multiple-cookies')
+  .controller((req) => {
+    req.setCookies = [
+      {
+        name: 'sessionId',
+        value: 'abc123',
+        options: { maxAge: 1000 * 60 * 60 * 24 * 30 }
+      },
+      {
+        name: 'preferences',
+        value: 'darkmode',
+        // No options provided, default settings will be used
+      }
+    ];
+
+    // ...additional logic...
+
+    res.end('Multiple cookies set');
+  });
+```
+
+### Clearing a Single Cookie
+
+To clear a single cookie, assign the cookie name to `req.clearCookie`.
+
+- `req.clearCookie` (String): The name of the cookie to clear.
+
+#### Example
+
+```javascript
+router
+  .post('/clear-cookie')
+  .controller((req) => {
+    req.clearCookie = 'sessionId';
+
+    // ...additional logic...
+
+    res.end('Cookie cleared');
+  });
+```
+
+### Clearing Multiple Cookies
+
+To clear multiple cookies, provide an array of cookie names to `req.clearCookies`.
+
+- `req.clearCookies` (Array): An array of strings, where each string is the name of a cookie to clear.
+
+#### Example
+
+```javascript
+router
+  .post('/clear-multiple-cookies')
+  .controller((req) => {
+    req.clearCookies = ['sessionId', 'preferences'];
+
+    // ...additional logic...
+
+    res.end('Multiple cookies cleared');
+  });
 ```
 
 ### Handling res.location
 
 To set the `Location` header for HTTP redirection:
 
-```
+```javascript
 router
   .get('/example')
   .controller((req) => {
@@ -170,7 +267,7 @@ router
 
 To add custom response headers:
 
-```
+```javascript
 router
   .get('/example')
   .controller((req) => {
@@ -185,7 +282,7 @@ router
 
 To return a specific HTTP status code, possibly with data:
 
-```
+```javascript
 router
   .get('/error')
   .controller((req) => {
@@ -198,7 +295,7 @@ router
 
 To return HTML content:
 
-```
+```javascript
 router
   .get('/html')
   .controller((req) => {
@@ -211,7 +308,7 @@ router
 
 To return XML content:
 
-```
+```javascript
 router
   .get('/xml')
   .controller((req) => {
@@ -224,7 +321,7 @@ router
 
 To return JavaScript code:
 
-```
+```javascript
 router
   .get('/script.js')
   .controller((req) => {
@@ -237,7 +334,7 @@ router
 
 To return CSV content and prompt a file download:
 
-```
+```javascript
 router
   .get('/csv')
   .controller((req) => {
@@ -251,7 +348,7 @@ router
 
 To return raw data without the default JSON packaging:
 
-```
+```javascript
 router
   .get('/rawdata')
   .controller((req) => {

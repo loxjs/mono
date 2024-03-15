@@ -5,6 +5,9 @@
     "scripts": {
         "test": "jest"
     },
+    "dependencies": {
+        "@loxjs/url-join": "^1.0.0"
+    },
     "devDependencies": {
         "lodash": "4.16.0"
     },

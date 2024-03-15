@@ -10,6 +10,7 @@ const _findIndex = require('lodash/findIndex')
 const _get = require('lodash/get')
 const _set = require('lodash/set')
 const _merge = require('lodash/merge')
+const urlJoin = require('@loxjs/url-join')
 
 class EthereumNetworkManager {
     constructor () {
@@ -154,6 +155,7 @@ class EthereumNetworkManager {
 
     // Function to add a new network
     addNetwork (network) {
+        network.chainId = parseInt(network.chainId)
         this.validateNetwork(network)
         const existingNetwork = this.getNetworkByChainId(network.chainId)
         if (existingNetwork) {
@@ -170,6 +172,7 @@ class EthereumNetworkManager {
 
     // Function to get a network by its chainId
     getNetworkByChainId (chainId, properties) {
+        chainId = parseInt(chainId)
         const network = _find(this.networks, { chainId })
         if (!network) {
             return null
@@ -214,6 +217,40 @@ class EthereumNetworkManager {
         } catch (err) {
             return false
         }
+    }
+
+    /**
+     * Get the contract explorer URL for a given contract address on a specific chain
+     * @param {number} chainId - Chain ID
+     * @param {string} contractAddress - Contract address
+     * @returns {string} - Contract explorer URL
+     */
+    getContractExplorerUrl (chainId, contractAddress) {
+        const network = this.getNetworkByChainId(chainId, ['blockExplorerUrl'])
+        return urlJoin(network.blockExplorerUrl, 'address', contractAddress)
+    }
+
+    /**
+     * Get the contract token list explorer URL for a given contract address on a specific chain
+     * @param {number} chainId - Chain ID
+     * @param {string} contractAddress - Contract address
+     * @returns {string} - Contract token list explorer URL
+     */
+    getContractTokenListExplorerUrl (chainId, contractAddress) {
+        const network = this.getNetworkByChainId(chainId, ['blockExplorerUrl'])
+        return urlJoin(network.blockExplorerUrl, 'tokens', contractAddress)
+    }
+
+    /**
+     * Get the token explorer URL for a given contract address and token ID on a specific chain
+     * @param {number} chainId - Chain ID
+     * @param {string} contractAddress - Contract address
+     * @param {string} tokenId - Token ID
+     * @returns {string} - Token explorer URL
+     */
+    getContractTokenExplorerUrl (chainId, contractAddress, tokenId) {
+        const network = this.getNetworkByChainId(chainId, ['blockExplorerUrl'])
+        return urlJoin(network.blockExplorerUrl, 'token', contractAddress, `?a=${ tokenId }`)
     }
 }
 

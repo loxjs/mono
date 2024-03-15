@@ -1,6 +1,6 @@
 {
     "name": "@loxjs/google-auth",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "src/index.js",
     "description": "A Node.js package designed to simplify the process of authenticating users with Google OAuth2.",
     "keywords": [

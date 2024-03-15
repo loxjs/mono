@@ -37,13 +37,6 @@ const GoogleAuth = class {
         code,
         redirect_uri,
     }) {
-        // const form = {
-        //     code,
-        //     client_id: '34469102160-hpv5o5hkg67hnq90tn89r751eo439krd.apps.googleusercontent.com',
-        //     client_secret: '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',
-        //     redirect_uri,
-        //     grant_type: 'authorization_code',
-        // }
         const form = {
             code,
             redirect_uri,

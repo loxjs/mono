@@ -246,7 +246,7 @@ class EthereumNetworkManager {
      * @returns {string} - Contract token list explorer URL
      */
     getContractTokenListExplorerUrl (chainId, contractAddress) {
-        const network = this.getNetworkByChainId(chainId, ['blockExplorerUrl'])
+        const network = this.getNetworkByChainId(chainId, ['chainId', 'blockExplorerUrl'])
         if (network.chainId === 355113) {
             return urlJoin(network.blockExplorerUrl, 'address', contractAddress, '?tab=tokens')
         }

@@ -1,15 +1,35 @@
-# README for @loxjs/web3networks
+# @loxjs/web3networks
 
 The `@loxjs/web3networks` module provides a comprehensive and easy-to-use interface to manage Ethereum-based blockchain network configurations. It allows developers to add, retrieve, update, and validate network configurations for different Ethereum chains, including testnets and mainnets.
 
 ## Features
 
-- Add single or multiple network configurations
-- Retrieve network configurations by chain ID
-- Update existing network configurations
-- Validate network data with required and optional fields
-- Set default values for optional fields if not provided
+- Add single or multiple network configurations with validation
+- Retrieve network configurations by chain ID, with optional property selection
+- Update existing network configurations by chain ID
+- Validate network data with required and optional fields, with default values for optional fields not provided
 - Helper function to validate URLs
+- Helper functions to generate blockchain explorer URLs for contracts and tokens
+- Preconfigured with a list of common networks
+
+## Preconfigured Networks
+
+The package comes with the following preconfigured networks:
+
+| Network Name                | Chain ID    |
+|-----------------------------|-------------|
+| Ethereum                    | 1           |
+| Holesky                     | 17000       |
+| Sepolia                     | 11155111    |
+| Avalanche                   | 43114       |
+| Avalanche Fuji              | 43113       |
+| Polygon                     | 137         |
+| Mumbai                      | 80001       |
+| BNB Chain                   | 56          |
+| BNB Chain Testnet           | 97          |
+| Skale Calypso Hub Testnet   | 974399131   |
+| Skale Calypso Hub           | 1564830818  |
+| Bitfinity Testnet           | 355113      |
 
 ## Installation
 
@@ -129,6 +149,8 @@ try {
 
 ## API Reference
 
+Below is the reference for the available methods in the `@loxjs/web3networks` module.
+
 ### `addNetwork(network)`
 
 Adds a single network configuration.
@@ -186,7 +208,7 @@ const network = ethereumNetworkManager.getNetworkByChainId(1, ['rpcUrl', 'curren
 
 ### `updateNetwork(chainId, newNetworkData)`
 
-Updates an existing network configuration.
+Updates an existing network configuration by chain ID.
 
 **Parameters:**
 
@@ -213,7 +235,7 @@ ethereumNetworkManager.updateNetwork(1, {
 
 ### `validateNetwork(network, [isUpdate])`
 
-Validates the provided network configuration.
+Validates a network configuration. If validating for an update, only the provided fields are validated.
 
 **Parameters:**
 
@@ -227,4 +249,50 @@ ethereumNetworkManager.validateNetwork({
     chainId: 1,
     // ...other network properties
 });
+```
+
+### `getContractExplorerUrl(chainId, contractAddress)`
+
+Generates the contract explorer URL for a given contract address on a specific chain.
+
+**Parameters:**
+
+- `chainId` - The chain ID of the network.
+- `contractAddress` - The contract address.
+
+**Example:**
+
+```javascript
+const url = ethereumNetworkManager.getContractExplorerUrl(1, '0x...');
+```
+
+### `getContractTokenListExplorerUrl(chainId, contractAddress)`
+
+Generates the contract token list explorer URL for a given contract address on a specific chain.
+
+**Parameters:**
+
+- `chainId` - The chain ID of the network.
+- `contractAddress` - The contract address.
+
+**Example:**
+
+```javascript
+const url = ethereumNetworkManager.getContractTokenListExplorerUrl(1, '0x...');
+```
+
+### `getContractTokenExplorerUrl(chainId, contractAddress, tokenId)`
+
+Generates the token explorer URL for a given contract address and token ID on a specific chain.
+
+**Parameters:**
+
+- `chainId` - The chain ID of the network.
+- `contractAddress` - The contract address.
+- `tokenId` - The token ID.
+
+**Example:**
+
+```javascript
+const url = ethereumNetworkManager.getContractTokenExplorerUrl(1, '0x...', '123');
 ```

@@ -155,13 +155,16 @@ class EthereumNetworkManager {
 
     // Function to add a new network
     addNetwork (network) {
+        const {
+            networks,
+        } = this
         network.chainId = parseInt(network.chainId)
         this.validateNetwork(network)
         const existingNetwork = this.getNetworkByChainId(network.chainId)
         if (existingNetwork) {
             throw new Error(`Network with chainId ${ network.chainId } already exists.`)
         }
-        this.networks.push(network)
+        networks.push(network)
     }
 
     addNetworks (networks) {
@@ -173,7 +176,10 @@ class EthereumNetworkManager {
     // Function to get a network by its chainId
     getNetworkByChainId (chainId, properties) {
         chainId = parseInt(chainId)
-        const network = _find(this.networks, { chainId })
+        const {
+            networks,
+        } = this
+        const network = _find(networks, { chainId })
         if (!network) {
             return null
         }
@@ -194,19 +200,22 @@ class EthereumNetworkManager {
 
     // Function to update an existing network
     updateNetwork (chainId, newNetworkData) {
+        const {
+            networks,
+        } = this
         this.validateNetwork(newNetworkData, true)
-        const networkIndex = _findIndex(this.networks, { chainId })
+        const networkIndex = _findIndex(networks, { chainId })
         if (networkIndex === -1) {
             throw new Error(`Network with chainId ${ chainId } not found.`)
         }
 
         // Merge current network data with new data
-        const currentNetworkData = this.networks[networkIndex]
+        const currentNetworkData = networks[networkIndex]
         const updatedNetworkData = _merge({}, currentNetworkData, newNetworkData)
         // Validate the merged result to ensure it's still a valid network
         this.validateNetwork(updatedNetworkData)
 
-        this.networks[networkIndex] = updatedNetworkData
+        networks[networkIndex] = updatedNetworkData
     }
 
     // Helper function to check if a string is a valid URL
@@ -238,6 +247,9 @@ class EthereumNetworkManager {
      */
     getContractTokenListExplorerUrl (chainId, contractAddress) {
         const network = this.getNetworkByChainId(chainId, ['blockExplorerUrl'])
+        if (network.chainId === 355113) {
+            return urlJoin(network.blockExplorerUrl, 'address', contractAddress, '?tab=tokens')
+        }
         return urlJoin(network.blockExplorerUrl, 'tokens', contractAddress)
     }
 
@@ -450,6 +462,24 @@ const networks = [
         currency: {
             name: 'SKALE FUEL',
             symbol: 'sFUEL',
+            decimals: 18,
+        },
+        options: {
+            defaultGasLimit: 3000000,
+            defaultGasPrice: '1',
+            defaultMultiplierForGasPrice: 1.5,
+        },
+    },
+    {
+        chainId: 355113,
+        chain: 'Bitfinity',
+        name: 'Bitfinity Testnet',
+        rpcUrl: 'https://testnet.bitfinity.network/',
+        blockExplorerUrl: 'https://explorer.bitfinity.network/',
+        isTest: true,
+        currency: {
+            name: 'Bitfinity ETH',
+            symbol: 'BFT',
             decimals: 18,
         },
         options: {

@@ -252,7 +252,7 @@ class EthereumNetworkManager {
         if (network.chainId === 355113) {
             return urlJoin(network.blockExplorerUrl, 'address', contractAddress, '?tab=tokens_nfts')
         }
-        return urlJoin(network.blockExplorerUrl, 'tokens', contractAddress)
+        return urlJoin(network.blockExplorerUrl, 'token', contractAddress)
     }
 
     /**

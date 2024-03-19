@@ -1,6 +1,6 @@
 {
     "name": "@loxjs/web3networks",
-    "version": "1.4.5",
+    "version": "1.5.0",
     "main": "src/index.js",
     "scripts": {
         "test": "jest"

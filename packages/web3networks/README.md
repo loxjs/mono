@@ -266,7 +266,7 @@ Generates the contract explorer URL for a given contract address on a specific c
 const url = ethereumNetworkManager.getContractExplorerUrl(1, '0x...');
 ```
 
-### `getContractTokenListExplorerUrl(chainId, contractAddress)`
+### `getContractTokensExplorerUrl(chainId, contractAddress)`
 
 Generates the contract token list explorer URL for a given contract address on a specific chain.
 
@@ -278,7 +278,7 @@ Generates the contract token list explorer URL for a given contract address on a
 **Example:**
 
 ```javascript
-const url = ethereumNetworkManager.getContractTokenListExplorerUrl(1, '0x...');
+const url = ethereumNetworkManager.getContractTokensExplorerUrl(1, '0x...');
 ```
 
 ### `getContractTokenExplorerUrl(chainId, contractAddress, tokenId)`
@@ -295,4 +295,36 @@ Generates the token explorer URL for a given contract address and token ID on a 
 
 ```javascript
 const url = ethereumNetworkManager.getContractTokenExplorerUrl(1, '0x...', '123');
+```
+
+### `getHashExplorerUrl(chainId, hash)`
+
+Get the transaction hash explorer URL for a given hash on a specific chain.
+
+**Parameters:**
+
+- `chainId` - The chain ID of the network.
+- `hash` - The transaction hash.
+
+**Example:**
+
+```javascript
+const url = ethereumNetworkManager.getHashExplorerUrl(1, '0x...');
+```
+
+### `getBlockExplorerUrl(chainId, blockHashOrNumber)`
+
+Get the block explorer URL for a given block hash or number on a specific chain.
+
+**Parameters:**
+
+- `chainId` - The chain ID of the network.
+- `blockHashOrNumber` - The block hash or number.
+
+**Example:**
+
+```javascript
+const url = ethereumNetworkManager.getBlockExplorerUrl(1, '0x...');
+// Or
+const url = ethereumNetworkManager.getBlockExplorerUrl(1, 123);
 ```

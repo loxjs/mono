@@ -170,7 +170,7 @@ const networks = [
         chain: 'Polygon',
         name: 'Mumbai',
         // rpcUrl: 'https://rpc-mumbai.maticvigil.com/',
-        rpcUrl: 'https://avalanche-fuji-c-chain-rpc.publicnode.com',
+        rpcUrl: 'https://polygon-mumbai-bor-rpc.publicnode.com',
         blockExplorerUrl: 'https://mumbai.polygonscan.com/',
         isTest: true,
         currency: {

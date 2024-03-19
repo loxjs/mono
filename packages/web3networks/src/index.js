@@ -237,6 +237,7 @@ class EthereumNetworkManager {
      * @returns {string} - Contract explorer URL
      */
     getContractExplorerUrl (chainId, contractAddress) {
+        contractAddress = `${ contractAddress }`
         const network = this.getNetworkByChainId(chainId, ['blockExplorerUrl'])
         return urlJoin(network.blockExplorerUrl, 'address', contractAddress)
     }
@@ -248,6 +249,7 @@ class EthereumNetworkManager {
      * @returns {string} - Contract token list explorer URL
      */
     getContractTokensExplorerUrl (chainId, contractAddress) {
+        contractAddress = `${ contractAddress }`
         const network = this.getNetworkByChainId(chainId, ['chainId', 'blockExplorerUrl'])
         if (network.chainId === 355113) {
             return urlJoin(network.blockExplorerUrl, 'address', contractAddress, '?tab=tokens_nfts')
@@ -263,6 +265,8 @@ class EthereumNetworkManager {
      * @returns {string} - Token explorer URL
      */
     getContractTokenExplorerUrl (chainId, contractAddress, tokenId) {
+        contractAddress = `${ contractAddress }`
+        tokenId = `${ tokenId }`
         const network = this.getNetworkByChainId(chainId, ['chainId', 'blockExplorerUrl'])
         if (network.chainId === 355113) {
             return urlJoin(network.blockExplorerUrl, 'token', contractAddress, `instance/${ tokenId }`)
@@ -277,6 +281,7 @@ class EthereumNetworkManager {
      * Get the hash explorer URL for a given hash on a specific chain
      */
     getHashExplorerUrl (chainId, hash) {
+        hash = `${ hash }`
         const network = this.getNetworkByChainId(chainId, ['blockExplorerUrl'])
         return urlJoin(network.blockExplorerUrl, 'tx', hash)
     }
@@ -285,6 +290,7 @@ class EthereumNetworkManager {
      * Get the block explorer URL for a given hash or number on a specific chain
      */
     getBlockExplorerUrl (chainId, blockHashOrNumber) {
+        blockHashOrNumber = `${ blockHashOrNumber }`
         const network = this.getNetworkByChainId(chainId, ['blockExplorerUrl'])
         return urlJoin(network.blockExplorerUrl, 'block', blockHashOrNumber)
     }

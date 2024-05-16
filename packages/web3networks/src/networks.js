@@ -173,6 +173,25 @@ const networks = [
         rpcUrl: 'https://polygon-mumbai-bor-rpc.publicnode.com',
         blockExplorerUrl: 'https://mumbai.polygonscan.com/',
         isTest: true,
+        isDeprecated: true,
+        currency: {
+            name: 'MATIC',
+            symbol: 'MATIC',
+            decimals: 18,
+        },
+        options: {
+            defaultGasLimit: 3000000,
+            defaultGasPrice: '1',
+            defaultMultiplierForGasPrice: 1.5,
+        },
+    },
+    {
+        chainId: 80002,
+        chain: 'Polygon',
+        name: 'Amoy',
+        rpcUrl: 'https://rpc-amoy.polygon.technology/',
+        blockExplorerUrl: 'https://amoy.polygonscan.com/',
+        isTest: true,
         currency: {
             name: 'MATIC',
             symbol: 'MATIC',

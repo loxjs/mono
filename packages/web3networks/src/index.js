@@ -271,11 +271,11 @@ class EthereumNetworkManager {
         if (network.chainId === 355113) {
             return urlJoin(network.blockExplorerUrl, 'token', contractAddress, `instance/${ tokenId }`)
         }
-        if (network.chainId === 80001) {
+        if (network.chain === 'Polygon') {
             return urlJoin(network.blockExplorerUrl, 'nft', contractAddress, tokenId)
         }
-        if (network.chainId === 80002) {
-            return urlJoin(network.blockExplorerUrl, 'nft', contractAddress, tokenId)
+        if (network.chain === 'Avalanche') {
+            return urlJoin(network.blockExplorerUrl, 'nft', contractAddress, tokenId, `?chainId=${ network.chainId }`)
         }
         return urlJoin(network.blockExplorerUrl, 'token', contractAddress, `?a=${ tokenId }`)
     }

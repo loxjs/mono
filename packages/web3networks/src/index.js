@@ -274,6 +274,9 @@ class EthereumNetworkManager {
         if (network.chainId === 80001) {
             return urlJoin(network.blockExplorerUrl, 'nft', contractAddress, tokenId)
         }
+        if (network.chainId === 80002) {
+            return urlJoin(network.blockExplorerUrl, 'nft', contractAddress, tokenId)
+        }
         return urlJoin(network.blockExplorerUrl, 'token', contractAddress, `?a=${ tokenId }`)
     }
 

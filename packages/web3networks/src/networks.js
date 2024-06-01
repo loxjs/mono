@@ -115,7 +115,7 @@ const networks = [
         chainId: 17000,
         chain: 'Ethereum',
         name: 'Holesky',
-        rpcUrl: 'https://ethereum-holesky.publicnode.com',
+        rpcUrl: 'https://ethereum-holesky-rpc.publicnode.com',
         blockExplorerUrl: 'https://holesky.etherscan.io/',
         isTest: true,
         currency: {
@@ -168,7 +168,7 @@ const networks = [
     {
         chainId: 80001,
         chain: 'Polygon',
-        name: 'Mumbai',
+        name: 'Polygon Mumbai',
         // rpcUrl: 'https://rpc-mumbai.maticvigil.com/',
         rpcUrl: 'https://polygon-mumbai-bor-rpc.publicnode.com',
         blockExplorerUrl: 'https://mumbai.polygonscan.com/',
@@ -188,7 +188,7 @@ const networks = [
     {
         chainId: 80002,
         chain: 'Polygon',
-        name: 'Amoy',
+        name: 'Polygon Amoy',
         rpcUrl: 'https://rpc-amoy.polygon.technology/',
         blockExplorerUrl: 'https://amoy.polygonscan.com/',
         isTest: true,
